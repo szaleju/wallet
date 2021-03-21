@@ -9,30 +9,24 @@
       <div class="col-10 bg-info">
         <div class="row">
             <div class="col-6 text-center">
-                <div class="card text-white bg-success mb-3" style="max-width: 30rem;">
-                    <div class="card-header">Balance</div>
-                    <div class="card-body">
-                        <form method="POST" action="">
-                            {% csrf_token %}
-                            {{ balance }}
-                            {{ balance_form.as_p }}
-                            <input type="submit" name="Submit Button" />
-                        </form>
-                    </div>
-                </div>
+                <h3>Balance</h3>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ balance }}
+                    {{ balance_form.as_p }}
+                    <input type="submit" value="Update balance" name="submit" />
+                </form>
             </div>
             <div class="col-6 text-center">
-                <div class="card text-white bg-success mb-3" style="max-width: 30rem;">
-                    <div class="card-header">New transaction</div>
-                    <div class="card-body">
-                        <form method="POST" action="">
-                            {% csrf_token %}
-                            {{ transaction_form.as_p }}
-                            <input type="submit" name="Submit Button" />
-                        </form>
-                    </div>
-                </div>
+                <h3>New transaction</h3>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ transaction_form.as_p }}
+                    <input type="submit" value="Send transaction" name="submit" />
+                </form>
             </div>
+        </div>
+        <div clas="row">
             <div class="col-12">
                 <h2> My assets </h2>
                 {% for asset in asset_list %}

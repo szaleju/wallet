@@ -17,7 +17,9 @@ TRANSACTION_TYPES = (
 
 ACCOUNT_TRANSACTION_TYPE = (
     ('deposit', 'wpłata'),
-    ('withdraw', 'wypłata')
+    ('withdraw', 'wypłata'),
+    ('buy', 'kup'),
+    ('sell', 'sprzedaj'),
 )
 
 
