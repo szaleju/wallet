@@ -7,7 +7,7 @@
         <h1>Wallet</h1>
       </div>
       <div class="col-10 bg-info p-5">
-        <div class="row">
+        <div class="row justify-content-center p-3">
             <div class="col-5 text-center mx-3 shadow bg-light rounded">
                 <div class="mt-3">
                     <h3>Balance</h3>
@@ -29,7 +29,10 @@
                         </div>
                     </div>
                     <div class="row p-3">
-                        <input type="submit" class="btn btn-primary"    value="Update balance" name="submit" />
+                        <div class="col6">
+                            <input type="hidden" value="buy">
+                            <input type="submit" class="btn btn-primary"    value="Update balance" name="submit" />
+                        </div>
                     </div>
                 </form>
             </div>
@@ -61,18 +64,31 @@
                         </div>
                     </div>
                     <div class="row p-3">
-                        <input type="submit" class="btn btn-primary"    value="Update balance" name="submit" />
+                        <input type="submit" class="btn btn-primary"    value="Send transaction" name="submit" />
                     </div>
                 </form>
             </div>
         </div>
-        <div class="row p-3">
-            <div class="col-12 mt-6 shadow bg-light rounded">
+        <div class="row justify-content-center p-3">
+            <div class="col-10 mt-6 shadow bg-light rounded">
                 <h2> My assets </h2>
                 <hr>
-                {% for asset in asset_list %}
-                    <p>{{ asset }}: {{ asset.quantity }} </p>
-                {% endfor %}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                          <th scope="col">Asset</th>
+                          <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for asset in asset_list %}
+                        <tr>
+                            <th class="fw-normal">{{ asset }}</th>
+                            <th class="fw-normal">{{ asset.quantity }}</th>
+                        </tr>    
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
       </div>

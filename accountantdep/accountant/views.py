@@ -5,8 +5,10 @@ from .forms import AddTransactionForm, UpdateBalanceForm
 
 def process_balance_update(form, last_transaction, submit_value):
     total_balance = last_transaction.total_balance
+    print("TOTAL BALANCE: ", total_balance)
     if submit_value == 'Send transaction':
         balance_update = form.cleaned_data['price']*form.cleaned_data['quantity']
+        print("BALACNE UPDATE: ", balance_update)
     else:
         balance_update = form.cleaned_data['balance']
     transaction_type = form.cleaned_data['transaction_type']
@@ -31,14 +33,13 @@ def process_transaction(form, last_transaction, submit_value):
     if owned_asset:
         if transaction_type == 'buy':
             owned_asset.quantity += quantity
-            process_balance_update(form, last_transaction, submit_value)
         else:
+            print("ELSE!")
             owned_asset.quantity -= quantity
-            process_balance_update(form, last_transaction, submit_value)
         owned_asset.save()
     else:
         Asset.objects.create(asset=asset, quantity=quantity)
-
+    process_balance_update(form, last_transaction, submit_value)
 
 def accountant_view(request):
     queryset = Asset.objects.all()
@@ -48,6 +49,7 @@ def accountant_view(request):
     if request.method=='POST':
         submit_value = request.POST.get('submit')
         last_transaction = AccountPln.objects.last()
+        print("SUBMIT: {} LAST: {}".format(submit_value, last_transaction))
         if submit_value == 'Update balance':
             form = UpdateBalanceForm(request.POST)
         elif submit_value == 'Send transaction':
